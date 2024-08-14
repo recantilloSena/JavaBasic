@@ -63,6 +63,26 @@ public class Bus {
         this.totalPasajeros = totalPasajeros;
     }
     
+    public void subirPasajeros(int pasajeros) {
+       this.pasajerosActuales = this.pasajerosActuales +   pasajeros;
+       this.totalPasajeros = this.totalPasajeros + pasajeros;
+    }
+    
+    public void bajarPasajeros(int pasajeros) {        
+        this.pasajerosActuales = this.pasajerosActuales -   pasajeros;        
+    }
+    
+    
+    public double getDineroAcumulado(){        
+        return this.totalPasajeros * this.preciosPasaje;
+    }
+    
+
+    @Override
+    public String toString() {
+        return "Bus{" + "placa=" + getPlaca() + ", capacidadPasajeros=" + getCapacidadPasajeros() + ", preciosPasaje=" + getPreciosPasaje() + ", pasajerosActuales=" + getPasajerosActuales() + ", totalPasajeros=" + getTotalPasajeros() + " y En total Recaudé = "+ getDineroAcumulado();
+    }
+    
     
     
     
