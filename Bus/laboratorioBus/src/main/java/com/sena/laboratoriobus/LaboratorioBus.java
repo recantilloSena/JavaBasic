@@ -30,13 +30,29 @@ public class LaboratorioBus {
         
         do {          
             
-            System.out.println("Digite la Capaciadad de Pasajeros a SUBIR ");
-            pasajeros = scanner.nextInt();            
-            bus.subirPasajeros(pasajeros);
+            System.out.println("Digite la Capaciadad de Pasajeros a SUBIR.");
+            pasajeros = scanner.nextInt(); 
+            
+            if (bus.getCapacidadPasajeros() - bus.getPasajerosActuales() >= pasajeros ) {
+                bus.subirPasajeros(pasajeros);
+            } else {
+                System.err.println("No puedo, NO hay cupo");
+            }
+            
+            
+            
             
             System.out.println("Digite la Capaciadad de Pasajeros a BAJAR ");
-            pasajeros = scanner.nextInt();            
-            bus.bajarPasajeros(pasajeros);
+            pasajeros = scanner.nextInt();  
+            
+            if (pasajeros > bus.getPasajerosActuales()) {
+                 System.err.println("No puedo bajarlos");
+            } else {
+                 bus.bajarPasajeros(pasajeros);
+            }
+            
+            
+            
             
             
             
