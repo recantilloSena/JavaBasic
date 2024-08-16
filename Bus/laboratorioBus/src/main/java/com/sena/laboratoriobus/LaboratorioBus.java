@@ -1,19 +1,25 @@
 
 package com.sena.laboratoriobus;
 
+
+
 import java.util.Scanner;
 
 
 public class LaboratorioBus {
+    
+    
 
-    public static void main(String[] args) {
+    public static void main(String[] args)   {
         
-        Scanner scanner = new Scanner(System.in);
-        
+         Scanner scanner = new Scanner(System.in);
+         
          String placa;
          int capacidadPasajeros;
          double preciosPasaje;
-         int pasajeros;
+         int pasajeros;     
+         
+         
          System.out.println("Digite la placa del Bus = ");
          placa = scanner.next();
          
@@ -24,6 +30,9 @@ public class LaboratorioBus {
          preciosPasaje = scanner.nextDouble();
        
         Bus bus = new Bus(placa, capacidadPasajeros, preciosPasaje);
+        
+        
+        
         
         
         int salir=0;

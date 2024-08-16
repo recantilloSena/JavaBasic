@@ -1,6 +1,8 @@
 
 package com.sena.laboratoriobus;
 
+import com.sena.modelo.Conexion;
+
 /**
  *
  * @author RICARDO
@@ -13,6 +15,7 @@ public class Bus {
     private double preciosPasaje;
     private int pasajerosActuales;
     private int totalPasajeros;
+    
 
     public Bus() {
     }
