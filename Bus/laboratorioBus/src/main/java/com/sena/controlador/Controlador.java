@@ -1,6 +1,7 @@
 
-package com.sena.modelo;
+package com.sena.controlador;
 
+import com.sena.modelo.Conexion;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,6 +46,37 @@ public class Controlador extends Conexion{
         }
     }
     
-    
+    public void adicionarDeporte(Integer idDeporte, String nombreDeporte) throws SQLException{
+        if (!hayConexion()) {
+            throw new SQLException("SIN CONEXION");
+        }
+        PreparedStatement pst = null;
+        ResultSet rst = null;
+        try {
+            pst = con.prepareStatement(" INSERT INTO `deportes` (`id`, `nombre_deporte`) "
+                    + " VALUES (?, ?);");
+            
+            pst.setInt(1, idDeporte);
+            pst.setString(2, nombreDeporte);
+                  
+           
+            pst.execute();
+
+        }catch(Exception Ex){
+            System.out.println("Error en Adiciona rDato : \n"+Ex);
+        } finally {
+            if (pst != null) {
+                pst.close();
+            }
+            if (rst != null) {
+                rst.close();
+            }
+        }
+        
+        
+        
+        
+        
+    }
     
 }

@@ -1,7 +1,7 @@
 
 package com.sena.laboratoriobus;
 
-import com.sena.modelo.Controlador;
+import com.sena.controlador.Controlador;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -13,14 +13,14 @@ public class InsertarDatos {
         
          Scanner scanner = new Scanner(System.in);
          
-         String nombre;
+         String nombre,nombreDeporte;
          Integer edad;
          Integer idDeporte;
          
          System.out.println("Digite Nombre = ");
          nombre = scanner.next();
          
-         System.out.println("Digite La edad = ");
+         System.out.println("Digite La edad de la persona= ");
          edad = scanner.nextInt();
          
          System.out.println("Digite El Código del Deporte = ");
@@ -31,6 +31,14 @@ public class InsertarDatos {
          Controlador controlador = new Controlador();
          
          controlador.adicionarPersona(nombre, edad, idDeporte);
+         
+         System.out.println("Digite Nombre de Deporte = ");
+         nombreDeporte = scanner.next();
+         
+         System.out.println("Digite el Id del Deporte= ");
+         idDeporte = scanner.nextInt();
+         
+         controlador.adicionarDeporte(idDeporte, nombreDeporte);
          
          
          
