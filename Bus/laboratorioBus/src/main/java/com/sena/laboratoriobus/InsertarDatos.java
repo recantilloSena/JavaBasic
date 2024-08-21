@@ -2,8 +2,10 @@
 package com.sena.laboratoriobus;
 
 import com.sena.controlador.Controlador;
+import com.sena.modelo.Deporte;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -34,7 +36,14 @@ public class InsertarDatos {
              }
              if (opcion==2){
                 crearPersona();
-             }        
+             }
+             if (opcion==3){
+                
+             }
+             if (opcion==4){
+                listarDeportes();
+             }
+             
          
          
              
@@ -80,5 +89,13 @@ public class InsertarDatos {
          System.out.println("Digite El Código del Deporte = ");
          idDeporte = scanner.nextInt();    
          controlador.adicionarPersona(nombre, edad, idDeporte);    }
+
+    private static void listarDeportes() throws SQLException, IOException {
+        Controlador controlador = new Controlador();
+        List<Deporte> lista =  controlador.listarDeportes();
+        
+        lista.forEach(i-> System.out.println(i.getId()+ " - " +i.getNombreDeporte()));
+         
+    }
     
 }

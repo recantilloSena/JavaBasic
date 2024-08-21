@@ -1,6 +1,9 @@
 
 package com.sena.modelo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 
 public class Deporte {
     
@@ -24,6 +27,17 @@ public class Deporte {
 
     public void setNombreDeporte(String nombreDeporte) {
         this.nombreDeporte = nombreDeporte;
+    }
+    
+     public static Deporte load(ResultSet rs)throws SQLException{
+        Deporte deporte= new Deporte();
+        
+        deporte.setId(rs.getInt(1));
+        deporte.setNombreDeporte(rs.getString(2));
+        
+        
+                       
+        return deporte;
     }
     
     
