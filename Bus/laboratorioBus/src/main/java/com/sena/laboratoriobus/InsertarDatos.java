@@ -32,7 +32,10 @@ public class InsertarDatos {
          System.out.println("4. Listar Deportes");
          System.out.println("5. Encontrar Deportes");
          System.out.println("6. Encontrar Persona");
-         System.out.println("7. Salir");
+         System.out.println("7. Listar Personas Por Id Deporte");
+         System.out.println("8. Listar Deportes 3 Deportes con más Personas");
+         System.out.println("9. Eliminar Persona");
+         System.out.println("10. Salir");
          System.out.println("--------------------");
          opcion = scanner.nextInt();
          
@@ -51,11 +54,20 @@ public class InsertarDatos {
              if (opcion==5){
                 encontrarDeportes();
              }
+             if (opcion==6){
+                
+             }
+             if (opcion==7){
+                
+             }
+             if (opcion==8){
+                
+             }
+             if (opcion==9){
+                
+             } 
              
-         
-         
-             
-         } while ( opcion != 7  );
+         } while ( opcion != 10  );
          
           
          
