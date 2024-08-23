@@ -110,10 +110,10 @@ public class InsertarDatos {
         for(Persona i : lista)
             {
                 
-                //deporte = controlador.encontrarDeporte(i.getIdDeporte()).getNombreDeporte();
+                deporte = controlador.encontrarDeporte(i.getIdDeporte()).getNombreDeporte();
                 System.out.println(i.getNombre() 
                         + " - "
-                        + i.getIdDeporte()
+                        + deporte
                 
                 );
             }

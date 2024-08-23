@@ -170,9 +170,10 @@ public class Controlador extends Conexion{
         LinkedList lista = new LinkedList();
         try {
             String query;
-            query = "SELECT * FROM deportes where id=?";    //Definir la consulta
-            pst.setInt(1, id);
-            pst = con.prepareStatement(query);    //Prepararla
+            query = "SELECT * FROM deportes where id = ? ";    //Definir la consulta
+            
+            pst = con.prepareStatement(query); 
+            pst.setInt(1, id);//Prepararla
                   
             rst = pst.executeQuery();             //Ejecutarla 
             
@@ -192,7 +193,7 @@ public class Controlador extends Conexion{
                 rst = null;
             }
         }
-        return (Deporte) lista.getFirst();                            //Retorna la lista llena
+        return  (Deporte) lista.getFirst();                            //Retorna la lista llena
         
         
         
