@@ -1,6 +1,9 @@
 
 package com.sena.modelo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 
 public class Persona {
     
@@ -44,6 +47,19 @@ public class Persona {
         this.idDeporte = idDeporte;
     }
     
+    
+    public static Persona load(ResultSet rs)throws SQLException{
+        Persona persona= new Persona();        
+        
+        persona.setId(rs.getInt(1));
+        persona.setNombre(rs.getString(2));
+        persona.setEdad(rs.getInt(3));
+        persona.setIdDeporte(rs.getInt(4));
+        
+        
+                       
+        return persona;
+    }
     
     
 }

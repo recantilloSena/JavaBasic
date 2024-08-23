@@ -3,10 +3,13 @@ package com.sena.laboratoriobus;
 
 import com.sena.controlador.Controlador;
 import com.sena.modelo.Deporte;
+import com.sena.modelo.Persona;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class InsertarDatos {
@@ -26,8 +29,10 @@ public class InsertarDatos {
          System.out.println("1. Crear Deporte");
          System.out.println("2. Crear Persona");
          System.out.println("3. Listar Personas");
-         System.out.println("4. Listar Desportes");
-         System.out.println("5. Salir");
+         System.out.println("4. Listar Deportes");
+         System.out.println("5. Encontrar Deportes");
+         System.out.println("6. Encontrar Persona");
+         System.out.println("7. Salir");
          System.out.println("--------------------");
          opcion = scanner.nextInt();
          
@@ -38,26 +43,23 @@ public class InsertarDatos {
                 crearPersona();
              }
              if (opcion==3){
-                
+                listarPersonas();
              }
              if (opcion==4){
                 listarDeportes();
              }
+             if (opcion==5){
+                encontrarDeportes();
+             }
              
          
          
              
-         } while ( opcion != 5  );
+         } while ( opcion != 7  );
          
           
          
-         
-         
-         
-         
-         
-         
-         
+                 
          
      }
 
@@ -97,5 +99,42 @@ public class InsertarDatos {
         lista.forEach(i-> System.out.println(i.getId()+ " - " +i.getNombreDeporte()));
          
     }
+    
+    private static void listarPersonas() throws SQLException, IOException {
+        Controlador controlador = new Controlador();
+        List<Persona> lista =  controlador.listarPersonas();
+        String deporte;
+        
+        
+        
+        for(Persona i : lista)
+            {
+                
+                //deporte = controlador.encontrarDeporte(i.getIdDeporte()).getNombreDeporte();
+                System.out.println(i.getNombre() 
+                        + " - "
+                        + i.getIdDeporte()
+                
+                );
+            }
+         
+    }
+    
+    
+    private static void encontrarDeportes() throws SQLException, IOException {
+        Scanner scanner = new Scanner(System.in);
+        Controlador controlador = new Controlador();
+        
+        Integer idDeporte;
+        
+         System.out.println("Digite el Id del Deporte= ");
+         idDeporte = scanner.nextInt();
+        
+         Deporte deporte = controlador.encontrarDeporte(idDeporte);
+         
+         System.out.println("El deporte se llama "+deporte.getNombreDeporte());
+         
+    }
+    
     
 }

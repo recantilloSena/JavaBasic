@@ -3,6 +3,7 @@ package com.sena.controlador;
 
 import com.sena.modelo.Conexion;
 import com.sena.modelo.Deporte;
+import com.sena.modelo.Persona;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -120,6 +121,82 @@ public class Controlador extends Conexion{
         
         
     }
+ 
+    public List<Persona> listarPersonas()throws SQLException{
+        if (!hayConexion()) {
+            throw new SQLException(" No existe conexion abierta ");
+        }
+        
+        
+        PreparedStatement pst = null;
+        ResultSet rst = null;
+        LinkedList lista = new LinkedList();
+        try {
+            String query;
+            query = "SELECT * FROM personas ";    //Definir la consulta
+            pst = con.prepareStatement(query);    //Prepararla
+                  
+            rst = pst.executeQuery();             //Ejecutarla 
+            
+            
+            while (rst.next()) {
+                lista.add(Persona.load(rst));     //Recorre el RS y llena una lista
+            }
+            //System.out.println("El Query " + query );
+            
+        }  finally {
+            if (pst != null) {
+                pst.close();
+                pst = null;
+            }
+            if (rst != null) {
+                rst.close();
+                rst = null;
+            }
+        }
+        return lista;                            //Retorna la lista llena
+        
+    }
+    
+   public Deporte encontrarDeporte(Integer id) throws SQLException{
+        
+         if (!hayConexion()) {
+            throw new SQLException(" No existe conexion abierta ");
+        }
+        
+        
+        PreparedStatement pst = null;
+        ResultSet rst = null;
+        LinkedList lista = new LinkedList();
+        try {
+            String query;
+            query = "SELECT * FROM deportes where id=?";    //Definir la consulta
+            pst.setInt(1, id);
+            pst = con.prepareStatement(query);    //Prepararla
+                  
+            rst = pst.executeQuery();             //Ejecutarla 
+            
+            
+            while (rst.next()) {
+                lista.add(Deporte.load(rst));     //Recorre el RS y llena una lista
+            }
+            //System.out.println("El Query " + query );
+            
+        }  finally {
+            if (pst != null) {
+                pst.close();
+                pst = null;
+            }
+            if (rst != null) {
+                rst.close();
+                rst = null;
+            }
+        }
+        return (Deporte) lista.getFirst();                            //Retorna la lista llena
+        
+        
+        
+    } 
     
     
 }
