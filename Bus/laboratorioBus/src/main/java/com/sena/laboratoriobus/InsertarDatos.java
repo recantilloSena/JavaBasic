@@ -55,7 +55,7 @@ public class InsertarDatos {
                 encontrarDeportes();
              }
              if (opcion==6){
-                
+                encontrarPersonas();
              }
              if (opcion==7){
                 
@@ -65,7 +65,10 @@ public class InsertarDatos {
              }
              if (opcion==9){
                 
-             } 
+             }
+             
+         
+         
              
          } while ( opcion != 10  );
          
@@ -147,6 +150,21 @@ public class InsertarDatos {
          System.out.println("El deporte se llama "+deporte.getNombreDeporte());
          
     }
+
+    private static void encontrarPersonas() throws SQLException, IOException {
+        Scanner scanner = new Scanner(System.in);
+        Controlador controlador = new Controlador();
+        
+        Integer idPersona;
+        
+         System.out.println("Digite el Id de la Persona = ");
+         idPersona = scanner.nextInt();
+        
+         Persona persona = controlador.encontrarPersona(idPersona);
+         
+         System.out.println("El nombre de la Persona es : " + persona.getNombre());
+        
+         }
     
     
 }

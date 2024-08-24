@@ -198,6 +198,46 @@ public class Controlador extends Conexion{
         
         
     } 
+
+    public Persona encontrarPersona(Integer idPersona) throws SQLException {
+        
+          if (!hayConexion()) {
+            throw new SQLException(" No existe conexion abierta ");
+        }
+        
+        
+        PreparedStatement pst = null;
+        ResultSet rst = null;
+        LinkedList lista = new LinkedList();
+        try {
+            String query;
+            query = "SELECT * FROM personas where id = ? ";    //Definir la consulta
+            
+            pst = con.prepareStatement(query); 
+            pst.setInt(1, idPersona);//Prepararla
+                  
+            rst = pst.executeQuery();             //Ejecutarla 
+            
+            
+            while (rst.next()) {
+                lista.add(Persona.load(rst));     //Recorre el RS y llena una lista
+            }
+            //System.out.println("El Query " + query );
+            
+        }  finally {
+            if (pst != null) {
+                pst.close();
+                pst = null;
+            }
+            if (rst != null) {
+                rst.close();
+                rst = null;
+            }
+        }
+        return  (Persona) lista.getFirst();
+        
+        
+        }
     
     
 }
