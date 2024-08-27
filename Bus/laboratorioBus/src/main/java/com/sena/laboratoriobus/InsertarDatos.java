@@ -33,8 +33,8 @@ public class InsertarDatos {
          System.out.println("5. Encontrar Deportes");
          System.out.println("6. Encontrar Persona");
          System.out.println("7. Listar Personas Por Id Deporte");
-         System.out.println("8. Listar Deportes 3 Deportes con más Personas");
-         System.out.println("9. Eliminar Persona");
+         System.out.println("8. Listar el Ranking de Deportes con más Personas");
+         System.out.println("9. Listar los Deportes que Contienen la letra ... ");
          System.out.println("10. Salir");
          System.out.println("--------------------");
          opcion = scanner.nextInt();
@@ -61,10 +61,11 @@ public class InsertarDatos {
                 
              }
              if (opcion==8){
-                
+                listarDeportesPopulares();
              }
+             
              if (opcion==9){
-                
+                listarDeporteQueContienenLaLetra();
              }
              
          
@@ -165,6 +166,32 @@ public class InsertarDatos {
          System.out.println("El nombre de la Persona es : " + persona.getNombre());
         
          }
+    private static void listarDeportesPopulares() throws SQLException, IOException {
+         Scanner scanner = new Scanner(System.in);
+        Controlador controlador = new Controlador();
+        
+         Integer ranking;
+         System.out.println("Digite el Tamaño del Ranking = ");
+         ranking = scanner.nextInt();
+         
+         List<Deporte> lista =  controlador.listarDeportesMasPopulares(ranking);
+         lista.forEach(i-> System.out.println(i.getId()+ " - " +i.getNombreDeporte()));
+
+        
+               
+    }
     
+    private static void listarDeporteQueContienenLaLetra() throws SQLException, IOException {
+         Scanner scanner = new Scanner(System.in);
+        Controlador controlador = new Controlador();
+        
+         String letra;
+         System.out.println("Digite la letra = ");
+         letra = scanner.next();
+         
+         List<Deporte> lista =  controlador.listarDeporteQueContienenLaLetra(letra);
+         lista.forEach(i-> System.out.println(i.getId()+ " - " +i.getNombreDeporte()));
+    
+    }
     
 }

@@ -240,4 +240,86 @@ public class Controlador extends Conexion{
         }
     
     
+     public List<Deporte> listarDeportesMasPopulares (Integer ranking) throws SQLException{
+     
+     
+        if (!hayConexion()) {
+            throw new SQLException(" No existe conexion abierta ");
+        }
+        
+        
+        PreparedStatement pst = null;
+        ResultSet rst = null;
+        LinkedList lista = new LinkedList();
+        try {
+            String query;
+            query = "SELECT d.* \n" +
+                    "FROM deportes d\n" +
+                    "order by ( SELECT count(*) FROM personas p where p.id_deporte=d.id) desc\n" +
+                    "limit ? ";    //Definir la consulta
+            pst = con.prepareStatement(query);    //Prepararla
+                  
+            pst.setInt(1, ranking);
+            rst = pst.executeQuery();             //Ejecutarla 
+            
+            
+            while (rst.next()) {
+                lista.add(Deporte.load(rst));     //Recorre el RS y llena una lista
+            }
+            //System.out.println("El Query " + query );
+            
+        }  finally {
+            if (pst != null) {
+                pst.close();
+                pst = null;
+            }
+            if (rst != null) {
+                rst.close();
+                rst = null;
+            }
+        }
+        return lista;  
+     
+     }
+    
+    
+    public List<Deporte> listarDeporteQueContienenLaLetra (String letra) throws SQLException{
+    if (!hayConexion()) {
+            throw new SQLException(" No existe conexion abierta ");
+        }
+        
+        
+        PreparedStatement pst = null;
+        ResultSet rst = null;
+        LinkedList lista = new LinkedList();
+        try {
+            String query;
+            query = "SELECT d.* FROM deportes d\n" +
+                    "where d.nombre_deporte\n" +
+                    "like ? ";    //Definir la consulta
+            pst = con.prepareStatement(query);    //Prepararla
+                  
+            pst.setString(1, "%"+letra+"%");
+            rst = pst.executeQuery();             //Ejecutarla 
+            
+            
+            while (rst.next()) {
+                lista.add(Deporte.load(rst));     //Recorre el RS y llena una lista
+            }
+            //System.out.println("El Query " + query );
+            
+        }  finally {
+            if (pst != null) {
+                pst.close();
+                pst = null;
+            }
+            if (rst != null) {
+                rst.close();
+                rst = null;
+            }
+        }
+        return lista;  
+    
+    }
 }
+
