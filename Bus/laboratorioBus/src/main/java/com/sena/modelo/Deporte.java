@@ -39,6 +39,11 @@ public class Deporte {
                        
         return deporte;
     }
+
+    @Override
+    public String toString() {
+        return "{" + "id=" + id + ", " + nombreDeporte + '}';
+    }
     
     
     

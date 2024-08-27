@@ -104,7 +104,9 @@ public class InsertarDatos {
          System.out.println("Digite La edad de la persona= ");
          edad = scanner.nextInt();
          
-         System.out.println("Digite El Código del Deporte = ");
+         System.out.println("Digite El Código del Deporte " 
+                   + controlador.listarDeportes().toString()
+         );
          idDeporte = scanner.nextInt();    
          controlador.adicionarPersona(nombre, edad, idDeporte);    }
 

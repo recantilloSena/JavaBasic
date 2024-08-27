@@ -296,7 +296,7 @@ public class Controlador extends Conexion{
             String query;
             query = "SELECT d.* FROM deportes d\n" +
                     "where d.nombre_deporte\n" +
-                    "like ? ";    //Definir la consulta
+                    "like ?                     ";    //Definir la consulta
             pst = con.prepareStatement(query);    //Prepararla
                   
             pst.setString(1, "%"+letra+"%");
