@@ -35,7 +35,8 @@ public class InsertarDatos {
          System.out.println("7. Listar Personas Por Id Deporte");
          System.out.println("8. Listar el Ranking de Deportes con más Personas");
          System.out.println("9. Listar los Deportes que Contienen la letra ... ");
-         System.out.println("10. Salir");
+         System.out.println("10. Eliminar deporte");
+         System.out.println("11. Salir");
          System.out.println("--------------------");
          opcion = scanner.nextInt();
          
@@ -67,11 +68,14 @@ public class InsertarDatos {
              if (opcion==9){
                 listarDeporteQueContienenLaLetra();
              }
+             if (opcion==10) {
+                 eliminarDeporte();
+             }
              
          
          
              
-         } while ( opcion != 10  );
+         } while ( opcion != 11  );
          
           
          
@@ -195,5 +199,31 @@ public class InsertarDatos {
          lista.forEach(i-> System.out.println(i.getId()+ " - " +i.getNombreDeporte()));
     
     }
+
+    private static void eliminarDeporte() throws SQLException, IOException {
+        Scanner scanner = new Scanner(System.in);
+        Controlador controlador = new Controlador();
+        
+        Integer idDeporte;
+        
+         System.out.println("Digite el Id del Deporte que desea eliminar= ");
+         idDeporte = scanner.nextInt();
+        
+         Long validaDeporte = controlador.validarPersonasPorIdDeporte(idDeporte);
+         
+         if (validaDeporte==0) {
+            controlador.eliminarDeporte(idDeporte);
+        } else {
+           System.out.println("No se puede eliminar el deporte. Tiene registros asociados");  
+        }
+         
+         
+         
+         
+    
+    }
+    
+    
+    
     
 }

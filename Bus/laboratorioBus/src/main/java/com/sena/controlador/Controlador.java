@@ -21,6 +21,43 @@ public class Controlador extends Conexion{
         this.conectar();
     }
     
+    public Long validarPersonasPorIdDeporte(Integer idDeporte)throws SQLException{
+        if (!hayConexion()) {
+            throw new SQLException(" No existe conexion abierta ");
+        }
+        
+        
+        PreparedStatement pst = null;
+        ResultSet rst = null;
+        LinkedList lista = new LinkedList();
+        try {
+            String query;
+            query = "SELECT * FROM personas as p\n" +
+                    "where id_deporte = ? ";    //Definir la consulta
+            pst = con.prepareStatement(query);    //Prepararla
+            pst.setInt(1,idDeporte );
+            rst = pst.executeQuery();             //Ejecutarla 
+            
+            
+            while (rst.next()) {
+                lista.add(Persona.load(rst));     //Recorre el RS y llena una lista
+            }
+            //System.out.println("El Query " + query );
+            
+        }  finally {
+            if (pst != null) {
+                pst.close();
+                pst = null;
+            }
+            if (rst != null) {
+                rst.close();
+                rst = null;
+            }
+        }
+        return lista.stream().count();                            //Retorna la lista llena
+        
+    }
+    
      public void adicionarPersona(String nombre, Integer edad, Integer idDeporte) throws SQLException, IOException {
         if (!hayConexion()) {
             throw new SQLException("SIN CONEXION");
@@ -321,5 +358,44 @@ public class Controlador extends Conexion{
         return lista;  
     
     }
+    
+    public void eliminarDeporte(Integer idDeporte)throws SQLException{
+        
+        if (!hayConexion()) {
+            throw new SQLException(" No existe conexion abierta ");
+        }
+        
+        
+        PreparedStatement pst = null;
+        ResultSet rst = null;
+        LinkedList lista = new LinkedList();
+        try {
+            String query;
+            query = "DELETE FROM `deportes` WHERE (`id` = ?)";    //Definir la consulta
+            
+            pst = con.prepareStatement(query); 
+            pst.setInt(1, idDeporte);//Prepararla
+                  
+            pst.executeUpdate();             //Ejecutarla 
+            
+            
+            
+        }  finally {
+            if (pst != null) {
+                pst.close();
+                pst = null;
+            }
+            if (rst != null) {
+                rst.close();
+                rst = null;
+            }
+        }
+        
+    }
+    
+    
 }
+
+
+
 
